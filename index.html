@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>spongebobify</title>
+  <style scoped>
+    .content {
+      font-size: 2rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      text-align: center;
+    }
+
+    .content input {
+      padding: 10px;
+      max-width: 80%;
+      font-size: 2rem;
+    }
+
+    .content>p {
+      font-size: 3rem;
+      font-weight: bold;
+      font-family: Impact, Charcoal, sans-serif;
+      color: white;
+      -webkit-text-stroke: 2px black;
+    }
+
+    .bg-image {
+      height: 100vh;
+      background-image: url("/mocking-spongebob.jpg");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      filter: blur(8px);
+      -webkit-filter: blur(8px);
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <div class="bg-image"></div>
+    <div class="content">
+      <p id="output"></p>
+      <input id="input" placeholder="Write something..." onkeyup="update()">
+    </div>
+  </div>
+  <script>
+    function alternatingCase(input) {
+      let output = ""
+      let caps = true
+      input.split('').forEach(element => {
+        if (caps) {
+          output += element.toUpperCase();
+        } else {
+          output += element.toLowerCase();
+        }
+        caps = !caps;
+      });
+
+      return output
+    }
+
+    function update() {
+      text = document.getElementById('input').value;
+      out = document.getElementById('output');
+      out.innerHTML = alternatingCase(text);
+    }
+  </script>
+</body>
+
+</html>
